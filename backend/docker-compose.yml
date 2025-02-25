@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth-service
+      - user-account-service
+      - item-catalog-service
+      - order-management-service
+      - ledger-service
+      - reporting-service
+      - campaign-service
+      - geo-tagging-service
+      - customer-connect-service
+      - inventory-service
+      - customer-profile-service
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "8001:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  user-account-service:
+    build: ./user-account-service
+    container_name: user-account-service
+    ports:
+      - "8002:8000"
+
+  item-catalog-service:
+    build: ./item-catalog-service
+    container_name: item-catalog-service
+    ports:
+      - "8003:8000"
+
+  order-management-service:
+    build: ./order-management-service
+    container_name: order-management-service
+    ports:
+      - "8004:8000"
+
+  ledger-service:
+    build: ./ledger-service
+    container_name: ledger-service
+    ports:
+      - "8005:8000"
+
+  reporting-service:
+    build: ./reporting-service
+    container_name: reporting-service
+    ports:
+      - "8006:8000"
+
+  campaign-service:
+    build: ./campaign-service
+    container_name: campaign-service
+    ports:
+      - "8007:8000"
+
+  geo-tagging-service:
+    build: ./geo-tagging-service
+    container_name: geo-tagging-service
+    ports:
+      - "8008:8000"
+
+  customer-connect-service:
+    build: ./customer-connect-service
+    container_name: customer-connect-service
+    ports:
+      - "8009:8000"
+
+  inventory-service:
+    build: ./inventory-service
+    container_name: inventory-service
+    ports:
+      - "8010:8000"
+
+  customer-profile-service:
+    build: ./customer-profile-service
+    container_name: customer-profile-service
+    ports:
+      - "8011:8000"

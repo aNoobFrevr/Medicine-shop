@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #7851a9; /* Royal purple */
+  color: gold;
+  padding: 10px;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
